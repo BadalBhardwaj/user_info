@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Project Overview: User Management System
+You built a User Management System using:
 
-## Getting Started
+Next.js (App Router)
 
-First, run the development server:
+TypeScript
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+React Hook Form + Zod for form handling and validation
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+TanStack Query (@tanstack/react-query) for data fetching and mutation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+TanStack Table for user table display
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+LocalStorage (or MongoDB optionally) for saving data
 
-## Learn More
+🧱 Main Features
+1. Add User Form
+Built using React Hook Form
 
-To learn more about Next.js, take a look at the following resources:
+Form Fields: Name, Email, Phone
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Validation using Zod Schema
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+On submit:
 
-## Deploy on Vercel
+Validates the input
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Saves the user to localStorage
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Triggers a mutation with React Query
+
+Shows a success message
+
+2. User List (Table View)
+Displays all saved users in a TanStack Table
+
+Data is fetched using useQuery
+
+When a row is clicked → navigates to User Detail Page
+
+3. User Detail Page
+Uses dynamic routing via /users/[id]/page.tsx
+
+Fetches the user data based on the id from URL
+
+Displays user details (name, email, phone)
+
+ Data Handling:
+Since you used localStorage:
+
+All users are stored as an array in browser storage
+
+The localStorage is read and updated using utility functions (getUsers, addUser, getUserById)
+
+If you switch to MongoDB later:
+
+Replace localStorage functions with real API endpoints and use fetch inside React Query.
+
+💡 Why This Stack Is Great
+✅ Type-safe (TypeScript + Zod)
+
+✅ Fast Development (localStorage = no backend needed)
+
+✅ Modern React with app router
+
+✅ Scalable — Easily upgrade to MongoDB or another backend
